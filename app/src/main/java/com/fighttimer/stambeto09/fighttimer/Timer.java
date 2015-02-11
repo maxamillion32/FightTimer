@@ -11,10 +11,17 @@ public class Timer implements ITimer {
     protected int seconds = 0;
     protected int minutes = 0;
     private Handler handler = new Handler();
+    protected int roundMaxMinutes = 0;
+    protected int roundMaxSeconds = 0;
 
     // Constructor
     public Timer() {
 
+    }
+
+    public Timer(int maxRoundSeconds, int maxRoundMinutes){
+        this.roundMaxMinutes = maxRoundMinutes;
+        this.roundMaxSeconds = maxRoundSeconds;
     }
 
     // Getters
