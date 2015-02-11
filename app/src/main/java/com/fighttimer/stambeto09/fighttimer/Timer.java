@@ -6,6 +6,7 @@ public class Timer implements ITimer {
 
     // Fields
     private boolean isRunning = false;
+    private boolean isFinished = false;
     protected int milliseconds = 0;
     protected int seconds = 0;
     protected int minutes = 0;
@@ -99,5 +100,11 @@ public class Timer implements ITimer {
 
     public String printResult(){
         return String.format("%02d:%02d", minutes, seconds);
+    }
+
+    private void resetTimer(){
+        this.seconds = 0;
+        this.milliseconds = 0;
+        this.minutes = 0;
     }
 }
