@@ -83,6 +83,13 @@ public class Timer implements ITimer {
                                     minutes++;
                                 }
                             }
+
+                            if (minutes == roundMaxMinutes && seconds == roundMaxSeconds){
+                                stop(textView);
+                                isFinished = true;
+                                isRunning = false;
+                                resetTimer();
+                            }
                         }
                     });
                 }
