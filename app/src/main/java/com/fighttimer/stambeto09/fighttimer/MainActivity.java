@@ -4,14 +4,32 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements View.OnClickListener {
+
+    TextView textView;
+    Timer myTimer;
+    Button startButton;
+    Button pauseButton;
+    Button stopButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        textView = (TextView) findViewById(R.id.textView);
+        startButton = (Button) findViewById(R.id.button);
+        pauseButton = (Button) findViewById(R.id.button2);
+        stopButton = (Button) findViewById(R.id.button3);
+        myTimer = new Timer(30, 0);
+
+        startButton.setOnClickListener(this);
+        pauseButton.setOnClickListener(this);
+        stopButton.setOnClickListener(this);
     }
 
 
@@ -35,5 +53,20 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.button:
+                myTimer.start(textView);
+                break;
+            case R.id.button2:
+                myTimer.pause();
+                break;
+            case R.id.button3:
+                myTimer.stop(textView);
+                break;
+        }
     }
 }
