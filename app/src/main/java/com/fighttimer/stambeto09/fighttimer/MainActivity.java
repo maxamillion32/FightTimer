@@ -26,7 +26,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         startButton = (Button) findViewById(R.id.button);
         pauseButton = (Button) findViewById(R.id.button2);
         stopButton = (Button) findViewById(R.id.button3);
-        fightTimer = new FightTimer(5, 0, 0, 0, textView);
+        // Minutes, seconds, minutes, seconds
+        fightTimer = new FightTimer(0, 5, 0, 3, 10, textView);
 
         // myTimer = new Timer(0, 0, textView);
         startButton.setOnClickListener(this);
