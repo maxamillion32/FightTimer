@@ -116,10 +116,14 @@ public class Timer implements ITimer {
     @Override
     public void stop() {
         isRunning = false;
+<<<<<<< HEAD
         isTriggered = true;
         minutes = 0;
         seconds = 0;
         milliseconds = 0;
+=======
+        resetTimer();
+>>>>>>> e2b15a3cbb38f7b0c354d7cd4a9c633e285faab7
         textView.setText(printResult());
     }
 
