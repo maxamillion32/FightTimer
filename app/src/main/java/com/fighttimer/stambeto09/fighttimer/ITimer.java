@@ -4,9 +4,9 @@ import android.widget.TextView;
 
 public interface ITimer {
 
-    void start(TextView textView);
+    void start();
 
     void pause();
 
-    void stop(TextView textView);
+    void stop();
 }

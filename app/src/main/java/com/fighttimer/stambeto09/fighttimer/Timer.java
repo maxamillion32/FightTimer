@@ -2,24 +2,24 @@ package com.fighttimer.stambeto09.fighttimer;
 import android.os.Handler;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 public class Timer implements ITimer {
 
     // Fields
     private boolean isRunning = false;
     private boolean isFinished = false;
+    private boolean isTriggered = true;
     protected int milliseconds = 0;
     protected int seconds = 0;
     protected int minutes = 0;
     private Handler handler = new Handler();
     protected int roundMaxMinutes = Integer.MAX_VALUE;
     protected int roundMaxSeconds = Integer.MAX_VALUE;
+    TextView textView;
 
     // Constructor
-    public Timer() {
-
-    }
-
-    public Timer(int maxRoundSeconds, int maxRoundMinutes){
+    public Timer(int maxRoundSeconds, int maxRoundMinutes, final TextView textView){
         if (maxRoundSeconds == 0 && maxRoundMinutes == 0){
             roundMaxMinutes = Integer.MAX_VALUE;
             roundMaxSeconds = Integer.MAX_VALUE;
@@ -27,6 +27,7 @@ public class Timer implements ITimer {
             this.roundMaxMinutes = maxRoundMinutes;
             this.roundMaxSeconds = maxRoundSeconds;
         }
+        this.textView = textView;
     }
 
     // Getters
@@ -64,53 +65,58 @@ public class Timer implements ITimer {
 
 
     @Override
-    public void start(final TextView textView) {
+    public void start() {
         isRunning = true;
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                while (isRunning) {
-                    try {
-                        Thread.sleep(10);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            milliseconds++;
-                            if (milliseconds >= 100) {
-                                milliseconds = 0;
-                                seconds++;
-                                textView.setText(printResult());
-                                if (seconds == 60) {
-                                    seconds = 0;
-                                    minutes++;
+        if (isTriggered) {
+            isTriggered = false;
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    while (isRunning) {
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                milliseconds++;
+                                if (milliseconds >= 100) {
+                                    milliseconds = 0;
+                                    seconds++;
+                                    textView.setText(printResult());
+                                    if (seconds == 60) {
+                                        seconds = 0;
+                                        minutes++;
+                                    }
+                                }
+
+                                if (minutes == roundMaxMinutes && seconds == roundMaxSeconds) {
+                                    stop();
+                                    isFinished = true;
+                                    isRunning = false;
+                                    resetTimer();
                                 }
                             }
-
-                            if (minutes == roundMaxMinutes && seconds == roundMaxSeconds){
-                                stop(textView);
-                                isFinished = true;
-                                isRunning = false;
-                                resetTimer();
-                            }
-                        }
-                    });
+                        });
+                    }
                 }
-            }
-        };
-        new Thread(runnable).start();
+            };
+            new Thread(runnable).start();
+        }
     }
 
     @Override
     public void pause() {
         isRunning = false;
+        isTriggered = true;
     }
 
     @Override
-    public void stop(TextView textView) {
+    public void stop() {
         isRunning = false;
+        isTriggered = true;
         minutes = 0;
         seconds = 0;
         milliseconds = 0;
