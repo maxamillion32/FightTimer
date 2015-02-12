@@ -8,7 +8,7 @@ public class Timer implements ITimer {
 
     // Fields
     private boolean isRunning = false;
-    private boolean isFinished = false;
+    public boolean isFinished = false;
     private boolean isTriggered = true;
     protected int milliseconds = 0;
     protected int seconds = 0;
