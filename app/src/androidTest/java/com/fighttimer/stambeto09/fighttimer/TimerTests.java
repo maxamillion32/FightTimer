@@ -7,6 +7,5 @@ import junit.framework.TestCase;
  */
 public class TimerTests extends TestCase{
     public void testInitializingTimer(){
-        Timer testTimer = new Timer(0, 0);
     }
 }
