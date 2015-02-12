@@ -111,9 +111,7 @@ public class Timer implements ITimer {
     @Override
     public void stop(TextView textView) {
         isRunning = false;
-        minutes = 0;
-        seconds = 0;
-        milliseconds = 0;
+        resetTimer();
         textView.setText(printResult());
     }
 
