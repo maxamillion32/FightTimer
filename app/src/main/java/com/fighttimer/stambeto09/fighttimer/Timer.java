@@ -11,8 +11,8 @@ public class Timer implements ITimer {
     protected int seconds = 0;
     protected int minutes = 0;
     private Handler handler = new Handler();
-    protected int roundMaxMinutes = 0;
-    protected int roundMaxSeconds = 0;
+    protected int roundMaxMinutes = Integer.MAX_VALUE;
+    protected int roundMaxSeconds = Integer.MAX_VALUE;
 
     // Constructor
     public Timer() {
@@ -20,8 +20,13 @@ public class Timer implements ITimer {
     }
 
     public Timer(int maxRoundSeconds, int maxRoundMinutes){
-        this.roundMaxMinutes = maxRoundMinutes;
-        this.roundMaxSeconds = maxRoundSeconds;
+        if (maxRoundSeconds == 0 && maxRoundMinutes == 0){
+            roundMaxMinutes = Integer.MAX_VALUE;
+            roundMaxSeconds = Integer.MAX_VALUE;
+        } else {
+            this.roundMaxMinutes = maxRoundMinutes;
+            this.roundMaxSeconds = maxRoundSeconds;
+        }
     }
 
     // Getters
