@@ -4,6 +4,8 @@ import android.os.Handler;
 import android.widget.TextView;
 
 public class FightTimer implements ITimer {
+    // TODO: Fix the bug with multiple start clicking
+    // TODO: Fix the bug when the timer is finish, to initialize again
 
     public boolean isRunning = false;
     public boolean isFinished = false;
@@ -73,7 +75,7 @@ public class FightTimer implements ITimer {
         isFinished = true;
         currentTimer.stop();
     }
-    // To extract set text to method
+    // TODO: Extract set text to method
     private void decideStrategy(){
         if (currentTimer.isFinished && currentTimer == fightTimer && roundNumber != maxRoundNumber - 1){
             roundNumber++;
