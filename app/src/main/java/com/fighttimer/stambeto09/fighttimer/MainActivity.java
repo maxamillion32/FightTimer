@@ -8,10 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
     TextView textView;
+    TextView roundView;
     Timer myTimer;
     Button startButton;
     Button pauseButton;
@@ -23,11 +26,12 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textView = (TextView) findViewById(R.id.textView);
+        roundView = (TextView) findViewById(R.id.roundView);
         startButton = (Button) findViewById(R.id.button);
         pauseButton = (Button) findViewById(R.id.button2);
         stopButton = (Button) findViewById(R.id.button3);
         // Minutes, seconds, minutes, seconds
-        fightTimer = new FightTimer(0, 5, 0, 3, 10, textView);
+        fightTimer = new FightTimer(0, 5, 0, 3, 3, textView, roundView);
 
         // myTimer = new Timer(0, 0, textView);
         startButton.setOnClickListener(this);
