@@ -16,6 +16,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     Button startButton;
     Button pauseButton;
     Button stopButton;
+    FightTimer fightTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +26,9 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         startButton = (Button) findViewById(R.id.button);
         pauseButton = (Button) findViewById(R.id.button2);
         stopButton = (Button) findViewById(R.id.button3);
+        fightTimer = new FightTimer(5, 0, 0, 0, textView);
 
-        myTimer = new Timer(0, 0, textView);
+        // myTimer = new Timer(0, 0, textView);
         startButton.setOnClickListener(this);
         pauseButton.setOnClickListener(this);
         stopButton.setOnClickListener(this);
@@ -59,13 +61,13 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.button:
-                myTimer.start();
+                fightTimer.start();
                 break;
             case R.id.button2:
-                myTimer.pause();
+                fightTimer.pause();
                 break;
             case R.id.button3:
-                myTimer.stop();
+                fightTimer.stop();
                 break;
         }
     }

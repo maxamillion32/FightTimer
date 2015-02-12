@@ -4,7 +4,7 @@ import android.widget.TextView;
 
 public interface ITimer {
 
-    void start();
+    void start() throws InterruptedException;
 
     void pause();
 
