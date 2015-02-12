@@ -11,6 +11,7 @@ public class FightTimer implements ITimer {
     Timer fightTimer;
     Timer currentTimer;
     TextView textView;
+    TextView roundView;
     Handler handler = new Handler();
 
     private int roundMinutes = 0;
@@ -22,8 +23,10 @@ public class FightTimer implements ITimer {
     public int roundNumber = 0;
 
     public FightTimer(int roundMinutes, int roundSeconds,
-                      int restMinutes, int restSeconds, int roundNumber, final TextView textView){
+                      int restMinutes, int restSeconds, int roundNumber,
+                      final TextView textView, final TextView roundView){
         this.textView = textView;
+        this.roundView = roundView;
         this.roundMinutes = roundMinutes;
         this.roundSeconds = roundSeconds;
         this.restMinutes = restMinutes;
@@ -39,6 +42,7 @@ public class FightTimer implements ITimer {
     public void start(){
         isRunning = true;
         isFinished = false;
+        roundView.setText(String.format("%d/%d", roundNumber + 1, maxRoundNumber));
         currentTimer.start();
 
         Runnable brunnable = new Runnable() {
@@ -69,15 +73,17 @@ public class FightTimer implements ITimer {
         isFinished = true;
         currentTimer.stop();
     }
-
+    // To extract set text to method
     private void decideStrategy(){
-        if (currentTimer.isFinished && currentTimer == fightTimer){
+        if (currentTimer.isFinished && currentTimer == fightTimer && roundNumber != maxRoundNumber - 1){
             roundNumber++;
+            roundView.setText(String.format("%d/%d", roundNumber + 1, maxRoundNumber));
             currentTimer.stop();
             currentTimer = breakTimer;
             breakTimer.isFinished = false;
             currentTimer.start();
         } else if (currentTimer.isFinished && currentTimer == breakTimer) {
+            roundView.setText(String.format("%d/%d", roundNumber + 1, maxRoundNumber));
             currentTimer.stop();
             currentTimer = fightTimer;
             fightTimer.isFinished = false;
