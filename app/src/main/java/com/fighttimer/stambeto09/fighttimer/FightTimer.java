@@ -9,6 +9,7 @@ public class FightTimer implements ITimer {
 
     public boolean isRunning = false;
     public boolean isFinished = false;
+    private boolean isTriggered = true;
     Timer breakTimer;
     Timer fightTimer;
     Timer currentTimer;
@@ -23,6 +24,8 @@ public class FightTimer implements ITimer {
 
     public int maxRoundNumber = 0;
     public int roundNumber = 0;
+
+    Thread thread;
 
     public FightTimer(int roundMinutes, int roundSeconds,
                       int restMinutes, int restSeconds, int roundNumber,
@@ -43,36 +46,43 @@ public class FightTimer implements ITimer {
     @Override
     public void start(){
         isRunning = true;
-        isFinished = false;
-        roundView.setText(String.format("%d/%d", roundNumber + 1, maxRoundNumber));
-        currentTimer.start();
-
-        Runnable brunnable = new Runnable() {
-            @Override
-            public void run() {
-                while (isRunning && !isFinished){
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            decideStrategy();
-                        }
-                    });
+        if (isTriggered) {
+            isTriggered = false;
+            isFinished = false;
+            roundView.setText(String.format("%d/%d", roundNumber + 1, maxRoundNumber));
+            currentTimer.start();
+            Runnable brunnable = new Runnable() {
+                @Override
+                public void run() {
+                    while (isRunning && !isFinished) {
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                decideStrategy();
+                            }
+                        });
+                    }
                 }
-            }
-        };
-        new Thread(brunnable).start();
+            };
+
+            thread = new Thread(brunnable);
+            thread.start();
+        }
     }
 
     @Override
     public void pause() {
         isRunning = false;
+        isTriggered = true;
         currentTimer.pause();
+
     }
 
     @Override
     public void stop() {
         isRunning = false;
         isFinished = true;
+        isTriggered = true;
         currentTimer.stop();
     }
     // TODO: Extract set text to method
