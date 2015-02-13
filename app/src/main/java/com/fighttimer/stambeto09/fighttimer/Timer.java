@@ -75,14 +75,14 @@ public class Timer implements ITimer {
                 public void run() {
                     while (isRunning) {
                         try {
-                            Thread.sleep(10);
+                            Thread.sleep(100);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                milliseconds++;
+                                milliseconds += 10;
                                 if (milliseconds >= 100) {
                                     milliseconds = 0;
                                     seconds++;

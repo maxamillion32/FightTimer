@@ -4,8 +4,6 @@ import android.os.Handler;
 import android.widget.TextView;
 
 public class FightTimer implements ITimer {
-    // TODO: Fix the bug with multiple start clicking
-    // TODO: Fix the bug when the timer is finish, to initialize again
 
     public boolean isRunning = false;
     public boolean isFinished = false;
@@ -83,19 +81,19 @@ public class FightTimer implements ITimer {
         isRunning = false;
         isFinished = true;
         isTriggered = true;
+        roundNumber = 0;
         currentTimer.stop();
     }
     // TODO: Extract set text to method
     private void decideStrategy(){
-        if (currentTimer.isFinished && currentTimer == fightTimer && roundNumber != maxRoundNumber - 1){
-            roundNumber++;
+        if (currentTimer.isFinished && currentTimer == fightTimer && roundNumber != maxRoundNumber){
             roundView.setText(String.format("%d/%d", roundNumber + 1, maxRoundNumber));
+            roundNumber++;
             currentTimer.stop();
             currentTimer = breakTimer;
             breakTimer.isFinished = false;
             currentTimer.start();
-        } else if (currentTimer.isFinished && currentTimer == breakTimer) {
-            roundView.setText(String.format("%d/%d", roundNumber + 1, maxRoundNumber));
+        } else if (currentTimer.isFinished && currentTimer == breakTimer && roundNumber != maxRoundNumber) {
             currentTimer.stop();
             currentTimer = fightTimer;
             fightTimer.isFinished = false;
@@ -103,6 +101,13 @@ public class FightTimer implements ITimer {
         } else if (roundNumber == maxRoundNumber){
             this.isRunning = false;
             isFinished = true;
+            fightTimer = new Timer(roundSeconds, roundMinutes, textView);
+            breakTimer = new Timer(restSeconds, restMinutes, textView);
+            roundNumber = 0;
+            currentTimer = fightTimer;
+            thread.interrupt();
+            isTriggered = true;
         }
     }
+
 }
