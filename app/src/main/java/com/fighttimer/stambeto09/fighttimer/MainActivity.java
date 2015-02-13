@@ -38,6 +38,10 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         stopButton.setOnClickListener(this);
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

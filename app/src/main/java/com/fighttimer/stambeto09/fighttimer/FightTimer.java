@@ -53,6 +53,11 @@ public class FightTimer implements ITimer {
                 @Override
                 public void run() {
                     while (isRunning && !isFinished) {
+                        try {
+                            Thread.sleep(500);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
