@@ -41,6 +41,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     @Override
     public void onBackPressed() {
         finish();
+        
     }
 
     @Override
