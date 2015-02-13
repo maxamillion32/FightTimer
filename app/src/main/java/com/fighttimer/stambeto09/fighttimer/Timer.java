@@ -132,7 +132,7 @@ public class Timer implements ITimer {
     }
 
     private void checkIsFinished(){
-        if (minutes == roundMaxMinutes && seconds == roundMaxSeconds) {
+        if (minutes == roundMaxMinutes && seconds == roundMaxSeconds + 1) {
             stop();
             isFinished = true;
             isRunning = false;
