@@ -21,7 +21,7 @@ public class FightTimer implements ITimer {
     private int restSeconds = 0;
 
     public int maxRoundNumber = 0;
-    public int roundNumber = 0;
+    public int roundNumber = 1;
 
     Thread thread;
 
@@ -47,7 +47,7 @@ public class FightTimer implements ITimer {
         if (isTriggered) {
             isTriggered = false;
             isFinished = false;
-            roundView.setText(String.format("%d/%d", roundNumber + 1, maxRoundNumber));
+            roundView.setText(String.format("%d/%d", roundNumber, maxRoundNumber));
             currentTimer.start();
             Runnable brunnable = new Runnable() {
                 @Override
@@ -91,24 +91,24 @@ public class FightTimer implements ITimer {
     }
     // TODO: Extract set text to method
     private void decideStrategy(){
-        if (currentTimer.isFinished && currentTimer == fightTimer && roundNumber != maxRoundNumber){
-            roundView.setText(String.format("%d/%d", roundNumber + 1, maxRoundNumber));
+        if (currentTimer.isFinished && currentTimer == fightTimer && roundNumber != maxRoundNumber + 1){
             roundNumber++;
             currentTimer.stop();
             currentTimer = breakTimer;
             breakTimer.isFinished = false;
             currentTimer.start();
-        } else if (currentTimer.isFinished && currentTimer == breakTimer && roundNumber != maxRoundNumber) {
+        } else if (currentTimer.isFinished && currentTimer == breakTimer && roundNumber != maxRoundNumber + 1) {
             currentTimer.stop();
             currentTimer = fightTimer;
             fightTimer.isFinished = false;
+            roundView.setText(String.format("%d/%d", roundNumber, maxRoundNumber));
             currentTimer.start();
-        } else if (roundNumber == maxRoundNumber){
+        } else if (roundNumber == maxRoundNumber + 1){
             this.isRunning = false;
             isFinished = true;
             fightTimer = new Timer(roundSeconds, roundMinutes, textView);
             breakTimer = new Timer(restSeconds, restMinutes, textView);
-            roundNumber = 0;
+            roundNumber = 1;
             currentTimer = fightTimer;
             thread.interrupt();
             isTriggered = true;
