@@ -18,7 +18,8 @@ import org.w3c.dom.Text;
 // TODO: Add a font for the numbers
 // TODO: Add a vibration and sound between the at the start and end of each round
 // TODO: Add an option to stop the vibrator or mute the sound
-// TODO:
+// TODO: Change the theme to Holo Dark
+// TODO: Add icon on notification bar when app is running
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
     TextView textView;
@@ -39,7 +40,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         pauseButton = (Button) findViewById(R.id.button2);
         stopButton = (Button) findViewById(R.id.button3);
         // Minutes, seconds, minutes, seconds
-        fightTimer = new FightTimer(1, 0, 0, 10, 8, textView, roundView);
+        fightTimer = new FightTimer(0, 20, 0, 10, 8, textView, roundView);
         timer = new Timer(5, 0, textView);
         startButton.setOnClickListener(this);
         pauseButton.setOnClickListener(this);
