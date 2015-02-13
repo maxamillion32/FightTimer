@@ -17,6 +17,7 @@ public class Timer implements ITimer {
     protected int roundMaxMinutes = Integer.MAX_VALUE;
     protected int roundMaxSeconds = Integer.MAX_VALUE;
     TextView textView;
+    Thread thread;
 
     // Constructor
     public Timer(int maxRoundSeconds, int maxRoundMinutes, final TextView textView){
@@ -91,19 +92,15 @@ public class Timer implements ITimer {
                                         minutes++;
                                     }
                                 }
-
-                                if (minutes == roundMaxMinutes && seconds == roundMaxSeconds) {
-                                    stop();
-                                    isFinished = true;
-                                    isRunning = false;
-                                    resetTimer();
-                                }
+                                checkIsFinished();
                             }
                         });
                     }
                 }
             };
-            new Thread(runnable).start();
+            thread = new Thread(runnable);
+            thread.start();
+            // new Thread(runnable).start();
         }
     }
 
@@ -133,4 +130,14 @@ public class Timer implements ITimer {
         this.milliseconds = 0;
         this.minutes = 0;
     }
+
+    private void checkIsFinished(){
+        if (minutes == roundMaxMinutes && seconds == roundMaxSeconds) {
+            stop();
+            isFinished = true;
+            isRunning = false;
+            resetTimer();
+        }
+    }
+
 }
