@@ -87,7 +87,7 @@ public class Timer implements ITimer {
                                     milliseconds = 0;
                                     seconds++;
                                     textView.setText(printResult());
-                                    if (seconds == 60) {
+                                    if (seconds == 59) {
                                         seconds = 0;
                                         minutes++;
                                     }

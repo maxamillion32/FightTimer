@@ -10,7 +10,15 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
-
+// TODO: Fix the bug with landscape mode
+// TODO: Add an icon
+// TODO: Design the buttons
+// TODO: Add in setting menu common kick-box, muay thai and kids modes
+// TODO: Create a new acitivity and pass the timer
+// TODO: Add a font for the numbers
+// TODO: Add a vibration and sound between the at the start and end of each round
+// TODO: Add an option to stop the vibrator or mute the sound
+// TODO:
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
     TextView textView;
@@ -31,7 +39,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         pauseButton = (Button) findViewById(R.id.button2);
         stopButton = (Button) findViewById(R.id.button3);
         // Minutes, seconds, minutes, seconds
-        fightTimer = new FightTimer(0, 20, 0, 10, 8, textView, roundView);
+        fightTimer = new FightTimer(1, 0, 0, 10, 8, textView, roundView);
         timer = new Timer(5, 0, textView);
         startButton.setOnClickListener(this);
         pauseButton.setOnClickListener(this);
@@ -41,7 +49,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     @Override
     public void onBackPressed() {
         finish();
-        
+
     }
 
     @Override
