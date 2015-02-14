@@ -83,10 +83,13 @@ public class FightTimer implements ITimer {
 
     @Override
     public void stop() {
-        currentTimer.stop();
-        resetCurrentTimer();
-        roundView.setText(String.format("0/%d", maxRoundNumber));
+        if (!isTriggered) {
+            currentTimer.stop();
+            resetCurrentTimer();
+            roundView.setText(String.format("0/%d", maxRoundNumber));
+        }
     }
+
     // TODO: Extract set text to method
     private void decideStrategy(){
         if (currentTimer.isFinished && currentTimer == fightTimer && roundNumber != maxRoundNumber + 1){
