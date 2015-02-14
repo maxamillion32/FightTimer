@@ -40,7 +40,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         pauseButton = (Button) findViewById(R.id.button2);
         stopButton = (Button) findViewById(R.id.button3);
         // Minutes, seconds, minutes, seconds
-        fightTimer = new FightTimer(0, 3, 0, 2, 0, textView, roundView);
+        fightTimer = new FightTimer(0, 3, 0, 2, 3, textView, roundView);
         timer = new Timer(5, 0, textView);
         startButton.setOnClickListener(this);
         pauseButton.setOnClickListener(this);
