@@ -1,5 +1,6 @@
 package com.fighttimer.stambeto09.fighttimer;
 
+import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,8 +30,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     Button stopButton;
     FightTimer fightTimer;
     Timer timer;
+    Typeface aftonFont;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -45,6 +46,10 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         startButton.setOnClickListener(this);
         pauseButton.setOnClickListener(this);
         stopButton.setOnClickListener(this);
+
+        //lobsterFont = Typeface.createFromAsset(getAssets(), "fonts/american_captain.otf");
+        aftonFont = Typeface.createFromAsset(getAssets(), "fonts/afton_font.ttf");
+        textView.setTypeface(aftonFont);
     }
 
     @Override
