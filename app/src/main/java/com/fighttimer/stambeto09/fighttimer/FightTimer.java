@@ -87,7 +87,7 @@ public class FightTimer implements ITimer {
             currentTimer.stop();
             resetCurrentTimer();
         }
-        
+
         roundView.setText(String.format("0/%d", maxRoundNumber));
     }
 

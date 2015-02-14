@@ -31,6 +31,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     FightTimer fightTimer;
     Timer timer;
     Typeface aftonFont;
+    Typeface lobsterFont;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +50,11 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         //lobsterFont = Typeface.createFromAsset(getAssets(), "fonts/american_captain.otf");
         aftonFont = Typeface.createFromAsset(getAssets(), "fonts/afton_font.ttf");
+        lobsterFont = Typeface.createFromAsset(getAssets(), "fonts/lobster_font.otf");
         textView.setTypeface(aftonFont);
+        pauseButton.setTypeface(lobsterFont);
+        startButton.setTypeface(lobsterFont);
+        stopButton.setTypeface(lobsterFont);
     }
 
     @Override
