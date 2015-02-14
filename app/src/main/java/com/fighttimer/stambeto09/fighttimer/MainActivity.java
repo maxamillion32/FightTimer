@@ -12,12 +12,10 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
-// TODO: Fix the bug with landscape mode
 // TODO: Add an icon
 // TODO: Design the buttons
 // TODO: Add in setting menu common kick-box, muay thai and kids modes
 // TODO: Create a new acitivity and pass the timer
-// TODO: Add a font for the numbers
 // TODO: Add a vibration and sound between the at the start and end of each round
 // TODO: Add an option to stop the vibrator or mute the sound
 // TODO: Change the theme to Holo Dark
@@ -69,7 +67,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         // Logic for keeping screen on
-        setContentView(R.layout.activity_main);
+        // setContentView(R.layout.activity_main);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         return true;
     }
