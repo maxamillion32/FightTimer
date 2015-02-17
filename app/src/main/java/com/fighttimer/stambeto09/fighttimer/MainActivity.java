@@ -1,5 +1,6 @@
 package com.fighttimer.stambeto09.fighttimer;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Vibrator;
@@ -9,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,7 +26,7 @@ import org.w3c.dom.Text;
 // TODO: Change the theme to Holo Dark
 // TODO: Add icon on notification bar when app is running
 // TODO: Hide the notification bar
-public class MainActivity extends ActionBarActivity implements View.OnClickListener {
+public class MainActivity extends Activity implements View.OnClickListener {
 
     TextView textView;
     TextView roundView;
@@ -67,6 +69,11 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         stopButton.setTypeface(redOctober);
 
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
+        // Hiding the status bar
+        // requestWindowFeature(Window.FEATURE_NO_TITLE);
+        // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                // WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     @Override
