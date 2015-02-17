@@ -52,12 +52,12 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         //lobsterFont = Typeface.createFromAsset(getAssets(), "fonts/american_captain.otf");
         aftonFont = Typeface.createFromAsset(getAssets(), "fonts/afton_font.ttf");
         lobsterFont = Typeface.createFromAsset(getAssets(), "fonts/lobster_font.otf");
-        redOctober = Typeface.createFromAsset(getAssets(), "fonts/red_october_fat.ttf");
-        roundView.setTypeface(aftonFont);
-        textView.setTypeface(aftonFont);
-        pauseButton.setTypeface(aftonFont);
-        startButton.setTypeface(aftonFont);
-        stopButton.setTypeface(aftonFont);
+        redOctober = Typeface.createFromAsset(getAssets(), "fonts/red_october.ttf");
+        roundView.setTypeface(redOctober);
+        textView.setTypeface(redOctober);
+        pauseButton.setTypeface(redOctober);
+        startButton.setTypeface(redOctober);
+        stopButton.setTypeface(redOctober);
     }
 
     @Override
