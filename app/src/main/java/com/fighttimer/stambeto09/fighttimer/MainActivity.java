@@ -20,6 +20,7 @@ import org.w3c.dom.Text;
 // TODO: Add an option to stop the vibrator or mute the sound
 // TODO: Change the theme to Holo Dark
 // TODO: Add icon on notification bar when app is running
+// TODO: Hide the notification bar
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
     TextView textView;
@@ -31,6 +32,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     Timer timer;
     Typeface aftonFont;
     Typeface lobsterFont;
+    Typeface redOctober;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,10 +52,12 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         //lobsterFont = Typeface.createFromAsset(getAssets(), "fonts/american_captain.otf");
         aftonFont = Typeface.createFromAsset(getAssets(), "fonts/afton_font.ttf");
         lobsterFont = Typeface.createFromAsset(getAssets(), "fonts/lobster_font.otf");
+        redOctober = Typeface.createFromAsset(getAssets(), "fonts/red_october_fat.ttf");
+        roundView.setTypeface(aftonFont);
         textView.setTypeface(aftonFont);
-        pauseButton.setTypeface(lobsterFont);
-        startButton.setTypeface(lobsterFont);
-        stopButton.setTypeface(lobsterFont);
+        pauseButton.setTypeface(aftonFont);
+        startButton.setTypeface(aftonFont);
+        stopButton.setTypeface(aftonFont);
     }
 
     @Override
