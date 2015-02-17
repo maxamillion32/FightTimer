@@ -23,9 +23,7 @@ import org.w3c.dom.Text;
 // TODO: Create a new acitivity and pass the timer
 // TODO: Add a vibration and sound between the at the start and end of each round
 // TODO: Add an option to stop the vibrator or mute the sound
-// TODO: Change the theme to Holo Dark
 // TODO: Add icon on notification bar when app is running
-// TODO: Hide the notification bar
 public class MainActivity extends Activity implements View.OnClickListener {
 
     TextView textView;
@@ -69,11 +67,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         stopButton.setTypeface(redOctober);
 
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-
-        // Hiding the status bar
-        // requestWindowFeature(Window.FEATURE_NO_TITLE);
-        // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                // WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     @Override
