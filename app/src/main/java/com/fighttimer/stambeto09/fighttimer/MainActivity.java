@@ -1,9 +1,12 @@
 package com.fighttimer.stambeto09.fighttimer;
 
+import android.content.Context;
 import android.graphics.Typeface;
+import android.os.Vibrator;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -34,6 +37,10 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     Typeface lobsterFont;
     Typeface redOctober;
 
+    boolean isVibrating = true;
+    boolean isMuted = false;
+    Vibrator vibrator;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -58,6 +65,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         pauseButton.setTypeface(redOctober);
         startButton.setTypeface(redOctober);
         stopButton.setTypeface(redOctober);
+
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
     }
 
     @Override
@@ -71,7 +80,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         // Logic for keeping screen on
-        // setContentView(R.layout.activity_main);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         return true;
     }
@@ -83,9 +91,19 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id){
+            case R.id.sound:
+                if (!isMuted){
+                    isMuted = true;
+                }
+                break;
+            case R.id.vibration:
+                if (isVibrating){
+                    isVibrating = false;
+                } else {
+                    isVibrating = true;
+                }
+                break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -96,13 +114,22 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         switch (v.getId()){
             case R.id.button:
                 fightTimer.start();
+                checkForVibration();
                 break;
             case R.id.button2:
                 fightTimer.pause();
+                checkForVibration();
                 break;
             case R.id.button3:
                 fightTimer.stop();
+                checkForVibration();
                 break;
+        }
+    }
+
+    private void checkForVibration() {
+        if (isVibrating){
+            vibrator.vibrate(500);
         }
     }
 }
