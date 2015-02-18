@@ -9,4 +9,7 @@
     <string name="reset"> R\ne\ns\ne\nt</string>
     <string name="sound">Sound</string>
     <string name="vibration">Vibration</string>
+    <string name="back_question">Are you sure you want to exit?</string>
+    <string name="no_answer">No</string>
+    <string name="yes_answer">Yes</string>
 </resources>

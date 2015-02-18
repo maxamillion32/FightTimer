@@ -1,7 +1,9 @@
 package com.fighttimer.stambeto09.fighttimer;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.Vibrator;
 import android.support.v7.app.ActionBarActivity;
@@ -17,10 +19,12 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
-// TODO: Create a new acitivity and pass the timer
+// TODO: Create a new acitivity and pass the parameters with shared preferences
 // TODO: Add a vibration and sound between the at the start and end of each round
 // TODO: Add an option to stop the vibrator or mute the sound
 // TODO: Add icon on notification bar when app is running
+// TODO: Decouple ITimer from exceptions
+
 public class MainActivity extends Activity implements View.OnClickListener {
 
     TextView textView;
@@ -68,8 +72,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
-        finish();
+        new AlertDialog.Builder(this)
+                .setTitle("Exit")
+                .setMessage("Are you sure you want to quit?")
+                .setNegativeButton(android.R.string.no, null)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener(){
 
+                    public void onClick(DialogInterface arg0, int arg1){
+                        finish();
+                    }
+                }).create().show();
     }
 
     @Override
