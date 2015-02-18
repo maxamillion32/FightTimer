@@ -7,5 +7,6 @@
     <string name="pause"> P\na\nu\ns\ne</string>
     <string name="start"> S\nt\na\nr\nt</string>
     <string name="reset"> R\ne\ns\ne\nt</string>
-    <string name="sound"> sound</string>
+    <string name="sound">Sound</string>
+    <string name="vibration">Vibration</string>
 </resources>

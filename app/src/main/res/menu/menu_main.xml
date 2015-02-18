@@ -3,6 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
     <item android:id="@+id/sound" android:title="@string/sound"
         android:icon="@drawable/sound_mute" app:showAsAction="always" />
-    <item android:id="@+id/vibration" android:title="@string/action_settings" android:icon="@drawable/vibrate"
+    <item android:id="@+id/vibration" android:title="@string/vibration" android:icon="@drawable/vibrate"
         android:orderInCategory="100" app:showAsAction="always" />
 </menu>

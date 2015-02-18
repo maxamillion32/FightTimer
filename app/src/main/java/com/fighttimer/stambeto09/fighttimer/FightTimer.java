@@ -94,8 +94,8 @@ public class FightTimer implements ITimer {
     // TODO: Extract set text to method
     private void decideStrategy(){
         if (currentTimer.isFinished && currentTimer == fightTimer && roundNumber != maxRoundNumber + 1){
-            roundNumber++;
             currentTimer.stop();
+            roundNumber++;
             currentTimer = breakTimer;
             breakTimer.isFinished = false;
             currentTimer.start();
