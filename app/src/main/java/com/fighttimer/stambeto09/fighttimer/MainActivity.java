@@ -17,9 +17,6 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
-// TODO: Add an icon
-// TODO: Design the buttons
-// TODO: Add in setting menu common kick-box, muay thai and kids modes
 // TODO: Create a new acitivity and pass the timer
 // TODO: Add a vibration and sound between the at the start and end of each round
 // TODO: Add an option to stop the vibrator or mute the sound
