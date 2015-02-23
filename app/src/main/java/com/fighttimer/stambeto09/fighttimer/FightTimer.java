@@ -89,7 +89,10 @@ public class FightTimer implements ITimer {
 
         resetCurrentTimer();
         roundView.setText(String.format("0/%d", maxRoundNumber));
+
         textView.setText(String.format("00:00"));
+
+        textView.setText("00:00");
     }
 
     // TODO: Extract set text to method
