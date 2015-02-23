@@ -9,4 +9,7 @@
     <string name="reset"> R\ne\ns\ne\nt</string>
     <string name="sound">Sound</string>
     <string name="vibration">Vibration</string>
+    <string name="title_activity_assign">AssignActivity</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>
