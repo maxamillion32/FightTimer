@@ -72,7 +72,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         fightTimer = new FightTimer(roundMinutes, roundSeconds,
                 breakMinutes, breakSeconds,
                 roundNumber, textView, roundView);
-        // timer = new Timer(5, 0, textView);
         startButton.setOnClickListener(this);
         pauseButton.setOnClickListener(this);
         stopButton.setOnClickListener(this);

@@ -2,8 +2,6 @@ package com.fighttimer.stambeto09.fighttimer;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,8 +9,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-
-import java.util.ArrayDeque;
 
 
 public class AssignActivity extends Activity implements View.OnClickListener {
@@ -22,15 +18,22 @@ public class AssignActivity extends Activity implements View.OnClickListener {
     Spinner roundSecondsSpinner;
     Spinner breakMinutesSpinner;
     Spinner breakSecondsSpinner;
-    String[] spinnerValues;
+    String[] secondsSpinnerAdapter;
+    String[] roundValuesAdapter;
+    String[] minutesValuesAdapter;
     Button nextButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assign);
-        spinnerValues = new String[] {
+        secondsSpinnerAdapter = new String[] {
                 "0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"
+        };
+
+        roundValuesAdapter = new String[] {
+                "0" ,"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13",
+                "14", "15", "16", "17", "18", "19", "20"
         };
 
         roundNumberSpinner = (Spinner) findViewById(R.id.round_spinner);
@@ -39,13 +42,15 @@ public class AssignActivity extends Activity implements View.OnClickListener {
         breakMinutesSpinner = (Spinner) findViewById(R.id.break_minutes_spinner);
         breakSecondsSpinner = (Spinner) findViewById(R.id.break_seconds_spinner);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
-                spinnerValues);
-        roundNumberSpinner.setAdapter(adapter);
-        roundMinutesSpinner.setAdapter(adapter);
-        roundSecondsSpinner.setAdapter(adapter);
-        breakMinutesSpinner.setAdapter(adapter);
-        breakSecondsSpinner.setAdapter(adapter);
+        ArrayAdapter<String> secondsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
+                secondsSpinnerAdapter);
+        ArrayAdapter<String> roundAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
+                roundValuesAdapter);
+        roundNumberSpinner.setAdapter(roundAdapter);
+        roundMinutesSpinner.setAdapter(roundAdapter);
+        roundSecondsSpinner.setAdapter(secondsAdapter);
+        breakMinutesSpinner.setAdapter(roundAdapter);
+        breakSecondsSpinner.setAdapter(secondsAdapter);
 
         nextButton = (Button) findViewById(R.id.next_button);
         nextButton.setOnClickListener(this);
