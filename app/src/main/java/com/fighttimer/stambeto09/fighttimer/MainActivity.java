@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Vibrator;
 import android.support.v7.app.ActionBarActivity;
@@ -50,9 +51,28 @@ public class MainActivity extends Activity implements View.OnClickListener {
         startButton = (Button) findViewById(R.id.button);
         pauseButton = (Button) findViewById(R.id.button2);
         stopButton = (Button) findViewById(R.id.button3);
+
+        // Shared Preferences
+        //SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+        //int numberOfRounds = prefs.getInt("round-number", 0);
+        //int roundMinutes = prefs.getInt("round-minutes", 0);
+        //int roundSeconds = prefs.getInt("round-seconds", 0);
+        //int breakSeconds = prefs.getInt("break-seconds", 0);
+        //int breakMinutes = prefs.getInt("break-minutes", 0);
+
         // Minutes, seconds, minutes, seconds
-        fightTimer = new FightTimer(0, 3, 0, 2, 3, textView, roundView);
-        timer = new Timer(5, 0, textView);
+        // fightTimer = new FightTimer(0, 3, 0, 2, 3, textView, roundView);
+
+        Bundle extras = getIntent().getExtras();
+        int roundNumber = Integer.parseInt(extras.getString("roundNumber"));
+        int roundMinutes = Integer.parseInt(extras.getString("roundMinutes"));
+        int roundSeconds = Integer.parseInt(extras.getString("roundSeconds"));
+        int breakMinutes = Integer.parseInt(extras.getString("breakMinutes"));
+        int breakSeconds = Integer.parseInt(extras.getString("breakSeconds"));
+        fightTimer = new FightTimer(roundMinutes, roundSeconds,
+                breakMinutes, breakSeconds,
+                roundNumber, textView, roundView);
+        // timer = new Timer(5, 0, textView);
         startButton.setOnClickListener(this);
         pauseButton.setOnClickListener(this);
         stopButton.setOnClickListener(this);

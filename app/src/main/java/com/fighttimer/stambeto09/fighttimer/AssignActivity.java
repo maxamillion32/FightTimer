@@ -2,6 +2,7 @@ package com.fighttimer.stambeto09.fighttimer;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -54,7 +55,17 @@ public class AssignActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(this, MainActivity.class);
+
+        // Parsing the values
+
+        intent.putExtra("roundNumber", roundNumberSpinner.getSelectedItem().toString());
+        intent.putExtra("roundMinutes", roundMinutesSpinner.getSelectedItem().toString());
+        intent.putExtra("roundSeconds", roundSecondsSpinner.getSelectedItem().toString());
+        intent.putExtra("breakMinutes", breakMinutesSpinner.getSelectedItem().toString());
+        intent.putExtra("breakSeconds", breakSecondsSpinner.getSelectedItem().toString());
+
         startActivity(intent);
+
     }
 
     @Override
