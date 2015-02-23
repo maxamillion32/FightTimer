@@ -1,17 +1,20 @@
 package com.fighttimer.stambeto09.fighttimer;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import java.util.ArrayDeque;
 
 
-public class AssignActivity extends Activity {
+public class AssignActivity extends Activity implements View.OnClickListener {
 
     Spinner roundNumberSpinner;
     Spinner roundMinutesSpinner;
@@ -19,6 +22,7 @@ public class AssignActivity extends Activity {
     Spinner breakMinutesSpinner;
     Spinner breakSecondsSpinner;
     String[] spinnerValues;
+    Button nextButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +33,29 @@ public class AssignActivity extends Activity {
         };
 
         roundNumberSpinner = (Spinner) findViewById(R.id.round_spinner);
+        roundMinutesSpinner = (Spinner) findViewById(R.id.minutes_spinner);
+        roundSecondsSpinner = (Spinner) findViewById(R.id.round_seconds_spinner);
+        breakMinutesSpinner = (Spinner) findViewById(R.id.break_minutes_spinner);
+        breakSecondsSpinner = (Spinner) findViewById(R.id.break_seconds_spinner);
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
                 spinnerValues);
         roundNumberSpinner.setAdapter(adapter);
+        roundMinutesSpinner.setAdapter(adapter);
+        roundSecondsSpinner.setAdapter(adapter);
+        breakMinutesSpinner.setAdapter(adapter);
+        breakSecondsSpinner.setAdapter(adapter);
+
+        nextButton = (Button) findViewById(R.id.next_button);
+        nextButton.setOnClickListener(this);
+
     }
 
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

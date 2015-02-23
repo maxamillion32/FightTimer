@@ -96,4 +96,13 @@
         android:layout_alignLeft="@+id/break_minutes_spinner"
         android:layout_alignStart="@+id/break_minutes_spinner" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:id="@+id/next_button"
+        android:layout_below="@+id/break_seconds_spinner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="49dp" />
+
 </RelativeLayout>
