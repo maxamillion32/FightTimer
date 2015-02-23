@@ -38,9 +38,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/minutes_spinner"
-        android:layout_below="@+id/round_minutes_view"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/round_spinner"
+        android:layout_toRightOf="@+id/round_seconds_view"
+        android:layout_toEndOf="@+id/round_seconds_view" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -56,9 +56,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/round_seconds_spinner"
-        android:layout_below="@+id/round_seconds_view"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/minutes_spinner"
+        android:layout_toRightOf="@+id/round_seconds_view"
+        android:layout_toEndOf="@+id/round_seconds_view" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -74,9 +74,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/break_minutes_spinner"
-        android:layout_below="@+id/break_minutes_view"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@+id/round_seconds_spinner"
+        android:layout_alignLeft="@+id/round_seconds_spinner"
+        android:layout_alignStart="@+id/round_seconds_spinner" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -92,8 +92,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/break_seconds_spinner"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignTop="@+id/textView2"
+        android:layout_alignLeft="@+id/break_minutes_spinner"
+        android:layout_alignStart="@+id/break_minutes_spinner" />
 
 </RelativeLayout>
