@@ -5,14 +5,33 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+
+import java.util.ArrayDeque;
 
 
 public class AssignActivity extends Activity {
+
+    Spinner roundNumberSpinner;
+    Spinner roundMinutesSpinner;
+    Spinner roundSecondsSpinner;
+    Spinner breakMinutesSpinner;
+    Spinner breakSecondsSpinner;
+    String[] spinnerValues;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assign);
+        spinnerValues = new String[] {
+                "0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"
+        };
+
+        roundNumberSpinner = (Spinner) findViewById(R.id.round_spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
+                spinnerValues);
+        roundNumberSpinner.setAdapter(adapter);
     }
 
 
